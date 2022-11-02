@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Example</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<div class="main-container" id="result">
+    <h1>ECE Result July 2002</h1>
+    <h2>Artificial Intelligence</h2>
+    <table class="my-table">
+
+        <tr>
+            <th>S.No.</th>
+            <th>Roll No.</th>
+            <th>Student Name</th>
+            <th>Maximum Marks</th>
+            <th>Marks Scored</th>            
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>1/20/FET/BAIOT/001</td>
+            <td>Shrinidhi Iyer</td>
+            <td>100</td>
+            <td>99</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>1/20/FET/BAIOT/002</td>
+            <td>Simran Kaushik</td>
+            <td>100</td>
+            <td>99</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>1/20/FET/BAIOT/003</td>
+            <td>Srishti Sanchita</td>
+            <td>100</td>
+            <td>80</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>1/20/FET/BAIOT/004</td>
+            <td>Varsha</td>
+            <td>100</td>
+            <td>79</td>
+        </tr>
+    </table>
+</div>
+
+<div class="button-container">
+    <button class = "button" type="submit" onclick="makepdf()">Download as PDF</button>
+</div>
+<script>
+    function makepdf()
+    {
+        var element = document.getElementById('result');
+        var opt = {
+        margin:       1,
+        filename:     'grades.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        // New Promise-based usage:-
+        html2pdf().set(opt).from(element).save();
+
+        // // Old monolithic-style usage:
+        // html2pdf(element, opt);
+    }
+</script>
+</body>
+</html>
+
